@@ -1,0 +1,2106 @@
+{
+  "ai": {
+    "provider": "claude_cli",
+    "model": "haiku",
+    "api_key_env": "",
+    "languages": [
+      "zh"
+    ],
+    "analysis_concurrency": 6,
+    "enrichment_concurrency": 3
+  },
+  "processing": {
+    "profiles_dir": "profiles",
+    "default_profile": "tech-news",
+    "profile_settings": {
+      "tech-news": {
+        "threshold": 7.5,
+        "topic_dedup": true
+      },
+      "papers": {
+        "threshold": 7.5,
+        "topic_dedup": false
+      },
+      "tech-blog": {
+        "threshold": 7.0,
+        "topic_dedup": false
+      },
+      "outdoor-photo": {
+        "threshold": 7.0,
+        "topic_dedup": true
+      },
+      "finance-news": {
+        "threshold": 7.5,
+        "topic_dedup": true
+      }
+    }
+  },
+  "display": {
+    "icon_style": "emoji"
+  },
+  "sources": {
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": 30,
+      "min_score": 150,
+      "category": "tech",
+      "profile": "tech-news"
+    },
+    "hf_papers": {
+      "enabled": true,
+      "min_upvotes": 10,
+      "max_items": 25,
+      "category": "tech",
+      "profile": "papers"
+    },
+    "ossinsight": {
+      "enabled": false,
+      "period": "past_24_hours",
+      "languages": [
+        "All"
+      ],
+      "keywords": [],
+      "min_stars": 50,
+      "max_items": 15,
+      "category": "tech",
+      "profile": "tech-news"
+    },
+    "reddit": {
+      "enabled": true,
+      "fetch_comments": 5,
+      "users": [],
+      "subreddits": [
+        {
+          "subreddit": "LocalLLaMA",
+          "enabled": true,
+          "sort": "top",
+          "time_filter": "day",
+          "fetch_limit": 10,
+          "min_score": 300,
+          "category": "tech",
+          "profile": "tech-news"
+        },
+        {
+          "subreddit": "MachineLearning",
+          "enabled": true,
+          "sort": "top",
+          "time_filter": "day",
+          "fetch_limit": 10,
+          "min_score": 100,
+          "category": "tech",
+          "profile": "tech-news"
+        },
+        {
+          "subreddit": "ClaudeAI",
+          "enabled": true,
+          "sort": "top",
+          "time_filter": "day",
+          "fetch_limit": 10,
+          "min_score": 400,
+          "category": "tech",
+          "profile": "tech-news"
+        },
+        {
+          "subreddit": "wildlifephotography",
+          "enabled": true,
+          "sort": "top",
+          "time_filter": "day",
+          "fetch_limit": 10,
+          "min_score": 300,
+          "category": "outdoor",
+          "profile": "outdoor-photo"
+        },
+        {
+          "subreddit": "Ultralight",
+          "enabled": true,
+          "sort": "top",
+          "time_filter": "day",
+          "fetch_limit": 10,
+          "min_score": 150,
+          "category": "outdoor",
+          "profile": "outdoor-photo"
+        }
+      ]
+    },
+    "telegram": {
+      "enabled": false,
+      "channels": []
+    },
+    "rss": [
+      {
+        "name": "OpenAI News",
+        "url": "https://openai.com/news/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Anthropic News",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Claude Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_claude.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Google DeepMind",
+        "url": "https://deepmind.google/blog/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Google AI Blog (blog.google)",
+        "url": "https://blog.google/technology/ai/rss/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Google Gemini Blog",
+        "url": "https://blog.google/products/gemini/rss/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Google Cloud AI & ML Blog",
+        "url": "https://cloudblog.withgoogle.com/products/ai-machine-learning/rss/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Meta AI Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "NVIDIA Blog",
+        "url": "https://blogs.nvidia.com/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Hugging Face Blog",
+        "url": "https://huggingface.co/blog/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Mistral AI",
+        "url": "https://mistral.ai/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "xAI News",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Cohere Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cohere.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Together AI Blog",
+        "url": "https://www.together.ai/blog/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Perplexity Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_perplexity_hub.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Groq Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_groq.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "AWS Machine Learning Blog",
+        "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Microsoft Foundry Blog",
+        "url": "https://devblogs.microsoft.com/foundry/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Databricks Blog",
+        "url": "https://www.databricks.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Google Research Blog",
+        "url": "https://research.google/blog/rss/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Microsoft Research",
+        "url": "https://www.microsoft.com/en-us/research/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Apple Machine Learning Research",
+        "url": "https://machinelearning.apple.com/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Anthropic Research",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_research.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Anthropic Frontier Red Team",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_red.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "OpenAI Research",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_openai_research.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "BAIR Blog",
+        "url": "https://bair.berkeley.edu/blog/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "METR",
+        "url": "https://metr.org/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Epoch AI",
+        "url": "https://epochai.substack.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "AI Alignment Forum",
+        "url": "https://www.alignmentforum.org/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Redwood Research Blog",
+        "url": "https://blog.redwoodresearch.org/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Amazon Science",
+        "url": "https://www.amazon.science/index.rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "UK AISI Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_aisi.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Goodfire Research",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_goodfire.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Anthropic Engineering",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "OpenAI Engineering",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_openai_engineering.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "OpenAI Developer Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_openai_developer.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Engineering at Meta",
+        "url": "https://engineering.fb.com/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "NVIDIA Technical Blog",
+        "url": "https://developer.nvidia.com/blog/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Cursor Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cursor.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Devin/Windsurf Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_windsurf_blog.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Vercel News",
+        "url": "https://vercel.com/atom",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Cloudflare Blog",
+        "url": "https://blog.cloudflare.com/rss/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "GitHub Blog",
+        "url": "https://github.blog/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "GitHub Changelog",
+        "url": "https://github.blog/changelog/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Stripe Blog",
+        "url": "https://stripe.com/blog/feed.rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Netflix Tech Blog",
+        "url": "https://netflixtechblog.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "LangChain Blog",
+        "url": "https://www.langchain.com/blog/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Ollama Blog",
+        "url": "https://ollama.com/blog/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Modal Blog",
+        "url": "https://modal.com/blog/atom.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Replicate Blog",
+        "url": "https://replicate.com/blog/rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Fly.io Blog",
+        "url": "https://fly.io/blog/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Tailscale Blog",
+        "url": "https://tailscale.com/blog/index.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Amp News (Sourcegraph)",
+        "url": "https://ampcode.com/news.rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Zed Blog",
+        "url": "https://zed.dev/blog.rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Supabase Blog",
+        "url": "https://supabase.com/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Astral Blog",
+        "url": "https://astral.sh/blog/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Bun Blog",
+        "url": "https://bun.sh/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Deno Blog",
+        "url": "https://deno.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Linear Blog",
+        "url": "https://linear.app/rss/blog.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Shopify Engineering",
+        "url": "https://shopify.engineering/blog.atom",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Spotify Engineering",
+        "url": "https://engineering.atspotify.com/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Airbnb Tech Blog",
+        "url": "https://medium.com/feed/airbnb-engineering",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Dropbox Tech Blog",
+        "url": "https://dropbox.tech/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Slack Engineering",
+        "url": "https://slack.engineering/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Discord Blog",
+        "url": "https://discord.com/blog/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Jane Street Blog",
+        "url": "https://blog.janestreet.com/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Weaviate Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_weaviate.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Pinecone Blog",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_pinecone.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Rust Blog",
+        "url": "https://blog.rust-lang.org/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Go Blog",
+        "url": "https://go.dev/blog/feed.atom",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-blog",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Andrej Karpathy (bearblog)",
+        "url": "https://karpathy.bearblog.dev/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Andrej Karpathy (github.io)",
+        "url": "https://karpathy.github.io/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Mario Zechner",
+        "url": "https://mariozechner.at/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Simon Willison",
+        "url": "https://simonwillison.net/atom/everything/",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Armin Ronacher",
+        "url": "https://lucumr.pocoo.org/feed.atom",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Mitchell Hashimoto",
+        "url": "https://mitchellh.com/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Geoffrey Huntley",
+        "url": "https://ghuntley.com/rss/",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Steve Yegge (Medium)",
+        "url": "https://steve-yegge.medium.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Peter Steinberger",
+        "url": "https://steipete.me/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Thorsten Ball (Register Spill)",
+        "url": "https://registerspill.thorstenball.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Lilian Weng (Lil'Log)",
+        "url": "https://lilianweng.github.io/index.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Sebastian Raschka (Ahead of AI)",
+        "url": "https://magazine.sebastianraschka.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Chip Huyen",
+        "url": "https://huyenchip.com/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Eugene Yan",
+        "url": "https://eugeneyan.com/rss/",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Hamel Husain",
+        "url": "https://hamel.dev/index.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "swyx",
+        "url": "https://www.swyx.io/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Latent Space",
+        "url": "https://www.latent.space/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Jay Alammar (Language Models & Co.)",
+        "url": "https://newsletter.languagemodels.co/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Dwarkesh Patel",
+        "url": "https://www.dwarkesh.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Ethan Mollick (One Useful Thing)",
+        "url": "https://www.oneusefulthing.org/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Zvi Mowshowitz (Don't Worry About the Vase)",
+        "url": "https://thezvi.substack.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Import AI (Jack Clark)",
+        "url": "https://importai.substack.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "The Batch (DeepLearning.AI)",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_the_batch.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Interconnects (Nathan Lambert)",
+        "url": "https://www.interconnects.ai/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Stratechery (Ben Thompson)",
+        "url": "https://stratechery.com/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Paul Graham Essays",
+        "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_paulgraham.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Sam Altman",
+        "url": "https://blog.samaltman.com/posts.atom",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "antirez",
+        "url": "https://antirez.com/rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Julia Evans",
+        "url": "https://jvns.ca/atom.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Dan Luu",
+        "url": "https://danluu.com/atom.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "matklad",
+        "url": "https://matklad.github.io/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Drew DeVault",
+        "url": "https://drewdevault.com/blog/index.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "fasterthanlime",
+        "url": "https://fasterthanli.me/index.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Addy Osmani",
+        "url": "https://addyosmani.com/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Kent Beck (Tidy First?)",
+        "url": "https://tidyfirst.substack.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Martin Fowler",
+        "url": "https://martinfowler.com/feed.atom",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "The Pragmatic Engineer",
+        "url": "https://newsletter.pragmaticengineer.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Gary Marcus",
+        "url": "https://garymarcus.substack.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Sean Goedecke",
+        "url": "https://www.seangoedecke.com/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "AINews (smol.ai)",
+        "url": "https://news.smol.ai/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Understanding AI (Timothy B. Lee)",
+        "url": "https://www.understandingai.org/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "AI as Normal Technology (Narayanan & Kapoor)",
+        "url": "https://www.normaltech.ai/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Astral Codex Ten",
+        "url": "https://www.astralcodexten.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "SemiAnalysis",
+        "url": "https://newsletter.semianalysis.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "ChinaTalk",
+        "url": "https://www.chinatalk.media/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Benedict Evans",
+        "url": "https://www.ben-evans.com/benedictevans?format=rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Philipp Schmid",
+        "url": "https://www.philschmid.de/rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Max Woolf",
+        "url": "https://minimaxir.com/index.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Drew Breunig",
+        "url": "https://www.dbreunig.com/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Harper Reed",
+        "url": "https://harper.blog/posts/index.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "David Crawshaw",
+        "url": "https://crawshaw.io/atom.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Nicholas Carlini",
+        "url": "https://nicholas.carlini.com/writing/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Answer.AI (Jeremy Howard)",
+        "url": "https://www.answer.ai/index.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Xe Iaso",
+        "url": "https://xeiaso.net/blog.rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Marc Brooker",
+        "url": "https://brooker.co.za/blog/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Will Larson (Irrational Exuberance)",
+        "url": "https://lethain.com/feeds.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Dan Abramov (overreacted)",
+        "url": "https://overreacted.io/rss.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "DHH",
+        "url": "https://world.hey.com/dhh/feed.atom",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Daring Fireball",
+        "url": "https://daringfireball.net/feeds/main",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Charity Majors",
+        "url": "https://charity.wtf/feed/",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Hillel Wayne (Computer Things)",
+        "url": "https://buttondown.com/hillelwayne/rss",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Jeff Geerling",
+        "url": "https://www.jeffgeerling.com/blog.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Steve Klabnik",
+        "url": "https://steveklabnik.com/feed.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Thomas Ptacek (sockpuppet.org)",
+        "url": "https://sockpuppet.org/atom.xml",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Strange Loop Canon (Rohit Krishnan)",
+        "url": "https://www.strangeloopcanon.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "The Algorithmic Bridge",
+        "url": "https://www.thealgorithmicbridge.com/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Exponential View (Azeem Azhar)",
+        "url": "https://www.exponentialview.co/feed",
+        "enabled": true,
+        "category": "tech",
+        "profile": [
+          "tech-news",
+          "tech-blog"
+        ],
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "PetaPixel",
+        "url": "https://petapixel.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "DPReview News",
+        "url": "https://www.dpreview.com/feeds/news.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "The Phoblographer",
+        "url": "https://www.thephoblographer.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Sony Alpha Rumors",
+        "url": "https://www.sonyalpharumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Canon Rumors",
+        "url": "https://www.canonrumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Nikon Rumors",
+        "url": "https://nikonrumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Fuji Rumors",
+        "url": "https://www.fujirumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "43 Rumors",
+        "url": "https://www.43rumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Leica Rumors",
+        "url": "https://leicarumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Photo Rumors",
+        "url": "https://photorumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "CineD",
+        "url": "https://www.cined.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Digital Camera World",
+        "url": "https://www.digitalcameraworld.com/feeds.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Mirrorless Rumors",
+        "url": "https://www.mirrorlessrumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "L-Rumors",
+        "url": "https://www.l-rumors.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Canon Watch",
+        "url": "https://www.canonwatch.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Newsshooter",
+        "url": "https://www.newsshooter.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Camera Jabber",
+        "url": "https://camerajabber.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Amateur Photographer",
+        "url": "https://amateurphotographer.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Lensrentals Blog",
+        "url": "https://www.lensrentals.com/blog/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "OpticalLimits",
+        "url": "https://opticallimits.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Cameralabs",
+        "url": "https://www.cameralabs.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "The Verge Cameras",
+        "url": "https://www.theverge.com/rss/cameras/index.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "TechRadar Cameras",
+        "url": "https://www.techradar.com/feeds/tag/cameras",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "phillipreeve.net",
+        "url": "https://phillipreeve.net/blog/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Lenstip",
+        "url": "https://www.lenstip.com/rss.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Photo Review",
+        "url": "https://www.photoreview.com.au/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "DXOMARK",
+        "url": "https://www.dxomark.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Macfilos",
+        "url": "https://www.macfilos.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Fstoppers",
+        "url": "https://fstoppers.com/rss.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "DIY Photography",
+        "url": "https://www.diyphotography.net/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Photography Life",
+        "url": "https://photographylife.com/feed",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Digital Photography School",
+        "url": "https://digital-photography-school.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Light Stalking",
+        "url": "https://www.lightstalking.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "35mmc",
+        "url": "https://www.35mmc.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Colossal Photography",
+        "url": "https://www.thisiscolossal.com/category/photography/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "CaptureLandscapes",
+        "url": "https://www.capturelandscapes.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "On Landscape",
+        "url": "https://www.onlandscape.co.uk/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Luminous Landscape",
+        "url": "https://luminous-landscape.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Shutter Muse",
+        "url": "https://shuttermuse.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "500px Blog",
+        "url": "https://iso.500px.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Magnum Photos",
+        "url": "https://www.magnumphotos.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "A Photo Editor",
+        "url": "https://aphotoeditor.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Audubon News",
+        "url": "https://www.audubon.org/rss.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Outdoor Photographer",
+        "url": "https://www.outdoorphotographer.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Nature Photographers Network (articles)",
+        "url": "https://www.naturephotographers.network/articles/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Backcountry Gallery (Steve Perry)",
+        "url": "https://backcountrygallery.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Mongabay",
+        "url": "https://news.mongabay.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Digital Camera World - wildlife photography",
+        "url": "https://www.digitalcameraworld.com/feeds/tag/wildlife-photography",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "BIRDS AS ART Blog (Arthur Morris)",
+        "url": "https://www.birdsasart-blog.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "The Guardian - Wildlife",
+        "url": "https://www.theguardian.com/environment/wildlife/rss",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "BirdLife International",
+        "url": "https://www.birdlife.org/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "American Birding Association",
+        "url": "https://www.aba.org/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "10,000 Birds",
+        "url": "https://www.10000birds.com/feed",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "BirdWatching",
+        "url": "https://www.birdwatchingdaily.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "bioGraphic",
+        "url": "https://www.biographic.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Smithsonian Science & Nature",
+        "url": "https://www.smithsonianmag.com/rss/science-nature/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Yale Environment 360",
+        "url": "https://e360.yale.edu/feed.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Cool Green Science (The Nature Conservancy)",
+        "url": "https://blog.nature.org/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "BBC News Science & Environment",
+        "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Rewilding Europe",
+        "url": "https://www.rewildingeurope.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Outside Online",
+        "url": "https://www.outsideonline.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Backpacker",
+        "url": "https://www.backpacker.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Trail Runner",
+        "url": "https://www.trailrunnermag.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "SectionHiker",
+        "url": "https://feeds.feedburner.com/SectionHiker",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "The Trek",
+        "url": "https://thetrek.co/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Alpinist",
+        "url": "https://alpinist.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Explorersweb",
+        "url": "https://explorersweb.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "iRunFar",
+        "url": "https://www.irunfar.com/feed",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Switchback Travel",
+        "url": "https://www.switchbacktravel.com/rss.xml",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Climbing",
+        "url": "https://www.climbing.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Gripped",
+        "url": "https://gripped.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "CleverHiker",
+        "url": "https://www.cleverhiker.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Halfway Anywhere",
+        "url": "https://www.halfwayanywhere.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Adventure Alan",
+        "url": "https://www.adventurealan.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "PMags",
+        "url": "https://pmags.com/feed",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Backpacking Light",
+        "url": "https://backpackinglight.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Treeline Review",
+        "url": "https://www.treelinereview.com/gearreviews?format=rss",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "TGO Magazine",
+        "url": "https://www.thegreatoutdoorsmag.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Field Mag",
+        "url": "https://www.fieldmag.com/feed",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "American Alpine Club News",
+        "url": "https://www.americanalpineclub.org/news?format=rss",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Ultra Running Magazine",
+        "url": "https://ultrarunning.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Pacific Crest Trail Association",
+        "url": "https://www.pcta.org/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Semi-Rad",
+        "url": "https://semi-rad.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "SnowBrains",
+        "url": "https://snowbrains.com/feed/",
+        "enabled": true,
+        "category": "outdoor",
+        "profile": "outdoor-photo"
+      },
+      {
+        "name": "Anthropic (YouTube)",
+        "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCrDwWp7EBBv4NwvScIpBDOA",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "OpenAI (YouTube)",
+        "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Matthew Berman (YouTube)",
+        "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCawZsQWqfGSbCI5yjkdVkTA",
+        "enabled": true,
+        "category": "tech",
+        "profile": "tech-news"
+      },
+      {
+        "name": "CNBC Finance",
+        "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      },
+      {
+        "name": "CNBC Economy",
+        "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      },
+      {
+        "name": "Bloomberg Markets",
+        "url": "https://feeds.bloomberg.com/markets/news.rss",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      },
+      {
+        "name": "Bloomberg Economics",
+        "url": "https://feeds.bloomberg.com/economics/news.rss",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      },
+      {
+        "name": "FT",
+        "url": "https://www.ft.com/rss/home",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      },
+      {
+        "name": "Economist Finance",
+        "url": "https://www.economist.com/finance-and-economics/rss.xml",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      },
+      {
+        "name": "WSJ Markets",
+        "url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      },
+      {
+        "name": "Matt Levine Money Stuff",
+        "url": "https://www.bloomberg.com/opinion/authors/ARbTQlRLRjE/matthew-s-levine.rss",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      },
+      {
+        "name": "华尔街见闻",
+        "url": "https://dedicated.wallstreetcn.com/rss.xml",
+        "enabled": true,
+        "category": "finance",
+        "profile": "finance-news"
+      }
+    ]
+  },
+  "collection": {
+    "time_window_hours": 24
+  },
+  "digest": {
+    "max_items": 24,
+    "profile_order": [
+      "tech-news",
+      "papers",
+      "tech-blog",
+      "outdoor-photo",
+      "finance-news"
+    ],
+    "category_groups": {
+      "tech": {
+        "limit": 12,
+        "categories": [
+          "tech"
+        ]
+      },
+      "outdoor": {
+        "limit": 7,
+        "categories": [
+          "outdoor"
+        ]
+      },
+      "finance": {
+        "limit": 5,
+        "categories": [
+          "finance"
+        ]
+      }
+    },
+    "default_group": "other",
+    "default_group_limit": 2
+  },
+  "wechat": {
+    "enabled": false
+  }
+}
