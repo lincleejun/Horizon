@@ -205,6 +205,10 @@ class AIConfig(BaseModel):
     throttle_sec: float = 0.0
     analysis_concurrency: int = 1
     enrichment_concurrency: int = 1
+    # Score this many same-profile items per AI call (1 = one call per item).
+    analysis_batch_size: int = Field(default=1, ge=1)
+    # Analyze at most this many items per run, newest first, spread across categories.
+    analysis_max_items: Optional[int] = Field(default=None, ge=1)
     languages: List[str] = Field(default_factory=lambda: ["en"])
     # Azure OpenAI specific; required when provider == AZURE
     azure_endpoint_env: Optional[str] = None
