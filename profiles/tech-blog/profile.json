@@ -2,7 +2,7 @@
   "id": "tech-blog",
   "name": "Technology Blog",
   "display_names": {
-    "zh": "科技博客"
+    "zh": "AI·科技｜深度"
   },
   "match": "match.md",
   "analysis": "analysis.md",
