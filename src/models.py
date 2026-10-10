@@ -20,6 +20,7 @@ class SourceType(str, Enum):
     OSSINSIGHT = "ossinsight"
     GDELT = "gdelt"
     GOOGLE_NEWS = "google_news"
+    HF_PAPERS = "hf_papers"
 
 
 class SourceDefinition(NamedTuple):
@@ -41,6 +42,7 @@ SOURCE_REGISTRY = {
     SourceType.OSSINSIGHT.value: SourceDefinition("ossinsight"),
     SourceType.GDELT.value: SourceDefinition("gdelt"),
     SourceType.GOOGLE_NEWS.value: SourceDefinition("google_news"),
+    SourceType.HF_PAPERS.value: SourceDefinition("hf_papers"),
 }
 
 ProfileRoute = Optional[Union[str, List[str]]]
@@ -130,6 +132,7 @@ class AIProvider(str, Enum):
     MINIMAX = "minimax"
     DEEPSEEK = "deepseek"
     OLLAMA = "ollama"
+    CLAUDE_CLI = "claude_cli"
 
 
 # Provider-specific defaults used by setup and provider-chain expansion.
@@ -180,6 +183,11 @@ AI_PROVIDER_DEFAULTS = {
         "model": "llama3.1",
         "api_key_env": "",
         "base_url": "http://localhost:11434/v1",
+    },
+    AIProvider.CLAUDE_CLI: {
+        "model": "haiku",
+        "api_key_env": "",
+        "base_url": None,
     },
 }
 
@@ -439,6 +447,20 @@ class GoogleNewsConfig(BaseModel):
     profile: ProfileRoute = None
 
 
+class HFPapersConfig(BaseModel):
+    """Hugging Face Daily Papers source configuration.
+
+    Reads the key-less https://huggingface.co/api/daily_papers endpoint and
+    keeps papers listed inside the collection window with enough upvotes.
+    """
+
+    enabled: bool = False
+    min_upvotes: int = 5
+    max_items: int = 30
+    category: Optional[str] = None
+    profile: ProfileRoute = None
+
+
 class SourcesConfig(BaseModel):
     """All sources configuration."""
 
@@ -452,6 +474,7 @@ class SourcesConfig(BaseModel):
     ossinsight: OSSInsightConfig = Field(default_factory=OSSInsightConfig)
     gdelt: Optional[GDELTConfig] = None
     google_news: Optional[GoogleNewsConfig] = None
+    hf_papers: Optional[HFPapersConfig] = None
 
 
 class WebhookConfig(BaseModel):

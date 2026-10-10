@@ -25,6 +25,7 @@ from .scrapers.twitter import TwitterScraper
 from .scrapers.twitter_playwright import TwitterPlaywrightScraper
 from .scrapers.openbb import OpenBBScraper
 from .scrapers.ossinsight import OSSInsightScraper
+from .scrapers.hf_papers import HFPapersScraper
 from .scrapers.gdelt import GDELTScraper
 from .scrapers.google_news import GoogleNewsScraper
 from .ai.client import create_ai_client
@@ -495,6 +496,12 @@ class HorizonOrchestrator:
             if self.config.sources.google_news and self.config.sources.google_news.enabled:
                 gn_scraper = GoogleNewsScraper(self.config.sources.google_news, client)
                 tasks.append(self._fetch_with_progress("Google News", gn_scraper, since))
+
+            # Hugging Face Daily Papers
+            hf_cfg = getattr(self.config.sources, "hf_papers", None)
+            if hf_cfg and hf_cfg.enabled:
+                hf_scraper = HFPapersScraper(hf_cfg, client)
+                tasks.append(self._fetch_with_progress("HF Papers", hf_scraper, since))
 
             # Fetch all concurrently
             outcomes = await asyncio.gather(*tasks)
