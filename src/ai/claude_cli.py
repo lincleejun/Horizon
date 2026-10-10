@@ -1,12 +1,20 @@
 """AI client that shells out to a locally logged-in Claude Code CLI."""
 
 import asyncio
+import atexit
+import logging
 import os
+import sys
 import tempfile
 from typing import Optional
 
 from ..models import AIConfig
 from .client import AIClient
+
+logger = logging.getLogger(__name__)
+
+calls = 0
+atexit.register(lambda: calls and print(f"claude CLI calls this run: {calls}", file=sys.stderr))
 
 CLAUDE_BIN = os.environ.get("HORIZON_CLAUDE_BIN", "claude")
 TIMEOUT_SEC = 300
@@ -22,6 +30,7 @@ class ClaudeCLIClient(AIClient):
     """
 
     def __init__(self, config: AIConfig):
+        self.config = config  # analyzer/enricher read concurrency from client.config
         self.model = config.model
 
     async def complete(
@@ -31,7 +40,12 @@ class ClaudeCLIClient(AIClient):
         temperature: Optional[float] = None,
         max_tokens: Optional[int] = None,
     ) -> str:
-        env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}
+        # An API key in the environment (e.g. a .env placeholder) would override
+        # the CLI login this provider exists to use.
+        global calls
+        calls += 1
+        drop = {"CLAUDECODE", "ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN"}
+        env = {k: v for k, v in os.environ.items() if k not in drop}
         process = await asyncio.create_subprocess_exec(
             CLAUDE_BIN, "-p",
             "--model", self.model,
@@ -56,5 +70,6 @@ class ClaudeCLIClient(AIClient):
         text = stdout.decode().strip()
         if process.returncode != 0 or not text:
             detail = (stderr.decode().strip() or text)[:500]
+            logger.warning("claude CLI failed (exit %s): %s", process.returncode, detail)
             raise RuntimeError(f"claude CLI failed (exit {process.returncode}): {detail}")
         return text
