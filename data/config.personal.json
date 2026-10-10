@@ -6,31 +6,33 @@
     "languages": [
       "zh"
     ],
-    "analysis_concurrency": 6,
-    "enrichment_concurrency": 3
+    "analysis_concurrency": 4,
+    "enrichment_concurrency": 3,
+    "analysis_batch_size": 20,
+    "analysis_max_items": null
   },
   "processing": {
     "profiles_dir": "profiles",
     "default_profile": "tech-news",
     "profile_settings": {
       "tech-news": {
-        "threshold": 7.5,
+        "threshold": 5.0,
         "topic_dedup": true
       },
       "papers": {
-        "threshold": 7.5,
+        "threshold": 5.0,
         "topic_dedup": false
       },
       "tech-blog": {
-        "threshold": 7.0,
+        "threshold": 5.0,
         "topic_dedup": false
       },
       "outdoor-photo": {
-        "threshold": 7.0,
+        "threshold": 5.0,
         "topic_dedup": true
       },
       "finance-news": {
-        "threshold": 7.5,
+        "threshold": 5.0,
         "topic_dedup": true
       }
     }
@@ -50,7 +52,7 @@
       "enabled": true,
       "min_upvotes": 10,
       "max_items": 25,
-      "category": "tech",
+      "category": "papers",
       "profile": "papers"
     },
     "ossinsight": {
@@ -362,7 +364,7 @@
         "name": "Anthropic Engineering",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -370,7 +372,7 @@
         "name": "OpenAI Engineering",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_openai_engineering.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -378,7 +380,7 @@
         "name": "OpenAI Developer Blog",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_openai_developer.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -386,7 +388,7 @@
         "name": "Engineering at Meta",
         "url": "https://engineering.fb.com/feed/",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -394,7 +396,7 @@
         "name": "NVIDIA Technical Blog",
         "url": "https://developer.nvidia.com/blog/feed/",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -402,7 +404,7 @@
         "name": "Cursor Blog",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cursor.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -410,7 +412,7 @@
         "name": "Devin/Windsurf Blog",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_windsurf_blog.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -418,7 +420,7 @@
         "name": "Vercel News",
         "url": "https://vercel.com/atom",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -426,7 +428,7 @@
         "name": "Cloudflare Blog",
         "url": "https://blog.cloudflare.com/rss/",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -434,7 +436,7 @@
         "name": "GitHub Blog",
         "url": "https://github.blog/feed/",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -442,7 +444,7 @@
         "name": "GitHub Changelog",
         "url": "https://github.blog/changelog/feed/",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -450,7 +452,7 @@
         "name": "Stripe Blog",
         "url": "https://stripe.com/blog/feed.rss",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -458,7 +460,7 @@
         "name": "Netflix Tech Blog",
         "url": "https://netflixtechblog.com/feed",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -466,7 +468,7 @@
         "name": "LangChain Blog",
         "url": "https://www.langchain.com/blog/rss.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -474,7 +476,7 @@
         "name": "Ollama Blog",
         "url": "https://ollama.com/blog/rss.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -482,7 +484,7 @@
         "name": "Modal Blog",
         "url": "https://modal.com/blog/atom.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -490,7 +492,7 @@
         "name": "Replicate Blog",
         "url": "https://replicate.com/blog/rss",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -498,7 +500,7 @@
         "name": "Fly.io Blog",
         "url": "https://fly.io/blog/feed.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -506,7 +508,7 @@
         "name": "Tailscale Blog",
         "url": "https://tailscale.com/blog/index.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -514,7 +516,7 @@
         "name": "Amp News (Sourcegraph)",
         "url": "https://ampcode.com/news.rss",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -522,7 +524,7 @@
         "name": "Zed Blog",
         "url": "https://zed.dev/blog.rss",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -530,7 +532,7 @@
         "name": "Supabase Blog",
         "url": "https://supabase.com/rss.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -538,7 +540,7 @@
         "name": "Astral Blog",
         "url": "https://astral.sh/blog/rss.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -546,7 +548,7 @@
         "name": "Bun Blog",
         "url": "https://bun.sh/rss.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -554,7 +556,7 @@
         "name": "Deno Blog",
         "url": "https://deno.com/feed",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -562,7 +564,7 @@
         "name": "Linear Blog",
         "url": "https://linear.app/rss/blog.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -570,7 +572,7 @@
         "name": "Shopify Engineering",
         "url": "https://shopify.engineering/blog.atom",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -578,7 +580,7 @@
         "name": "Spotify Engineering",
         "url": "https://engineering.atspotify.com/feed/",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -586,7 +588,7 @@
         "name": "Airbnb Tech Blog",
         "url": "https://medium.com/feed/airbnb-engineering",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -594,7 +596,7 @@
         "name": "Dropbox Tech Blog",
         "url": "https://dropbox.tech/feed",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -602,7 +604,7 @@
         "name": "Slack Engineering",
         "url": "https://slack.engineering/feed/",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -610,7 +612,7 @@
         "name": "Discord Blog",
         "url": "https://discord.com/blog/rss.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -618,7 +620,7 @@
         "name": "Jane Street Blog",
         "url": "https://blog.janestreet.com/feed.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -626,7 +628,7 @@
         "name": "Weaviate Blog",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_weaviate.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -634,7 +636,7 @@
         "name": "Pinecone Blog",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_pinecone.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -642,7 +644,7 @@
         "name": "Rust Blog",
         "url": "https://blog.rust-lang.org/feed.xml",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -650,7 +652,7 @@
         "name": "Go Blog",
         "url": "https://go.dev/blog/feed.atom",
         "enabled": true,
-        "category": "tech",
+        "category": "blog",
         "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
@@ -658,737 +660,536 @@
         "name": "Andrej Karpathy (bearblog)",
         "url": "https://karpathy.bearblog.dev/feed/",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Andrej Karpathy (github.io)",
         "url": "https://karpathy.github.io/feed.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Mario Zechner",
         "url": "https://mariozechner.at/rss.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Simon Willison",
         "url": "https://simonwillison.net/atom/everything/",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Armin Ronacher",
         "url": "https://lucumr.pocoo.org/feed.atom",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Mitchell Hashimoto",
         "url": "https://mitchellh.com/feed.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Geoffrey Huntley",
         "url": "https://ghuntley.com/rss/",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Steve Yegge (Medium)",
         "url": "https://steve-yegge.medium.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Peter Steinberger",
         "url": "https://steipete.me/rss.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Thorsten Ball (Register Spill)",
         "url": "https://registerspill.thorstenball.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Lilian Weng (Lil'Log)",
         "url": "https://lilianweng.github.io/index.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Sebastian Raschka (Ahead of AI)",
         "url": "https://magazine.sebastianraschka.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Chip Huyen",
         "url": "https://huyenchip.com/feed.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Eugene Yan",
         "url": "https://eugeneyan.com/rss/",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Hamel Husain",
         "url": "https://hamel.dev/index.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "swyx",
         "url": "https://www.swyx.io/rss.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Latent Space",
         "url": "https://www.latent.space/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Jay Alammar (Language Models & Co.)",
         "url": "https://newsletter.languagemodels.co/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Dwarkesh Patel",
         "url": "https://www.dwarkesh.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Ethan Mollick (One Useful Thing)",
         "url": "https://www.oneusefulthing.org/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Zvi Mowshowitz (Don't Worry About the Vase)",
         "url": "https://thezvi.substack.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Import AI (Jack Clark)",
         "url": "https://importai.substack.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "The Batch (DeepLearning.AI)",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_the_batch.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Interconnects (Nathan Lambert)",
         "url": "https://www.interconnects.ai/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Stratechery (Ben Thompson)",
         "url": "https://stratechery.com/feed/",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Paul Graham Essays",
         "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_paulgraham.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Sam Altman",
         "url": "https://blog.samaltman.com/posts.atom",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "antirez",
         "url": "https://antirez.com/rss",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Julia Evans",
         "url": "https://jvns.ca/atom.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Dan Luu",
         "url": "https://danluu.com/atom.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "matklad",
         "url": "https://matklad.github.io/feed.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Drew DeVault",
         "url": "https://drewdevault.com/blog/index.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "fasterthanlime",
         "url": "https://fasterthanli.me/index.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Addy Osmani",
         "url": "https://addyosmani.com/rss.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Kent Beck (Tidy First?)",
         "url": "https://tidyfirst.substack.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Martin Fowler",
         "url": "https://martinfowler.com/feed.atom",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "The Pragmatic Engineer",
         "url": "https://newsletter.pragmaticengineer.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Gary Marcus",
         "url": "https://garymarcus.substack.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Sean Goedecke",
         "url": "https://www.seangoedecke.com/rss.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "AINews (smol.ai)",
         "url": "https://news.smol.ai/rss.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Understanding AI (Timothy B. Lee)",
         "url": "https://www.understandingai.org/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "AI as Normal Technology (Narayanan & Kapoor)",
         "url": "https://www.normaltech.ai/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Astral Codex Ten",
         "url": "https://www.astralcodexten.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "SemiAnalysis",
         "url": "https://newsletter.semianalysis.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "ChinaTalk",
         "url": "https://www.chinatalk.media/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Benedict Evans",
         "url": "https://www.ben-evans.com/benedictevans?format=rss",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Philipp Schmid",
         "url": "https://www.philschmid.de/rss",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Max Woolf",
         "url": "https://minimaxir.com/index.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Drew Breunig",
         "url": "https://www.dbreunig.com/feed.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Harper Reed",
         "url": "https://harper.blog/posts/index.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "David Crawshaw",
         "url": "https://crawshaw.io/atom.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Nicholas Carlini",
         "url": "https://nicholas.carlini.com/writing/feed.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Answer.AI (Jeremy Howard)",
         "url": "https://www.answer.ai/index.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Xe Iaso",
         "url": "https://xeiaso.net/blog.rss",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Marc Brooker",
         "url": "https://brooker.co.za/blog/rss.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Will Larson (Irrational Exuberance)",
         "url": "https://lethain.com/feeds.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Dan Abramov (overreacted)",
         "url": "https://overreacted.io/rss.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "DHH",
         "url": "https://world.hey.com/dhh/feed.atom",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Daring Fireball",
         "url": "https://daringfireball.net/feeds/main",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Charity Majors",
         "url": "https://charity.wtf/feed/",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Hillel Wayne (Computer Things)",
         "url": "https://buttondown.com/hillelwayne/rss",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Jeff Geerling",
         "url": "https://www.jeffgeerling.com/blog.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Steve Klabnik",
         "url": "https://steveklabnik.com/feed.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Thomas Ptacek (sockpuppet.org)",
         "url": "https://sockpuppet.org/atom.xml",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Strange Loop Canon (Rohit Krishnan)",
         "url": "https://www.strangeloopcanon.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "The Algorithmic Bridge",
         "url": "https://www.thealgorithmicbridge.com/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
         "name": "Exponential View (Azeem Azhar)",
         "url": "https://www.exponentialview.co/feed",
         "enabled": true,
-        "category": "tech",
-        "profile": [
-          "tech-news",
-          "tech-blog"
-        ],
+        "category": "blog",
+        "profile": "tech-blog",
         "content_extractor": "trafilatura"
       },
       {
@@ -2079,9 +1880,21 @@
     ],
     "category_groups": {
       "tech": {
-        "limit": 12,
+        "limit": 7,
         "categories": [
           "tech"
+        ]
+      },
+      "papers": {
+        "limit": 3,
+        "categories": [
+          "papers"
+        ]
+      },
+      "blog": {
+        "limit": 3,
+        "categories": [
+          "blog"
         ]
       },
       "outdoor": {
@@ -2091,7 +1904,7 @@
         ]
       },
       "finance": {
-        "limit": 5,
+        "limit": 4,
         "categories": [
           "finance"
         ]
