@@ -2,7 +2,7 @@
   "id": "tech-news",
   "name": "Technology News",
   "display_names": {
-    "zh": "科技新闻"
+    "zh": "AI·科技｜新闻"
   },
   "match": "match.md",
   "analysis": "analysis.md",
@@ -18,12 +18,25 @@
       {
         "id": "background",
         "type": "section",
-        "tools": ["history_search", "web_search"]
+        "tools": [
+          "history_search",
+          "web_search"
+        ]
+      },
+      {
+        "id": "verification",
+        "type": "section",
+        "tools": [
+          "web_search"
+        ],
+        "optional": true
       },
       {
         "id": "impact",
         "type": "section",
-        "tools": ["web_search"],
+        "tools": [
+          "web_search"
+        ],
         "optional": true
       },
       {

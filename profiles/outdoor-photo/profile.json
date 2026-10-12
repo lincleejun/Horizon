@@ -1,0 +1,37 @@
+{
+  "id": "outdoor-photo",
+  "name": "Outdoor & Photography",
+  "display_names": {
+    "zh": "户外·摄影"
+  },
+  "match": "match.md",
+  "analysis": "analysis.md",
+  "content": {
+    "analysis_max_chars": 4000,
+    "enrichment_max_chars": 12000,
+    "sampling": "head-middle-tail"
+  },
+  "enrichment": {
+    "prompt": "enrichment.md",
+    "blocks": [
+      {
+        "id": "summary",
+        "type": "section",
+        "tools": [],
+        "primary": true
+      },
+      {
+        "id": "takeaway",
+        "type": "section",
+        "tools": [],
+        "optional": true
+      },
+      {
+        "id": "verification",
+        "type": "section",
+        "tools": ["web_search"],
+        "optional": true
+      }
+    ]
+  }
+}

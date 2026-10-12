@@ -20,6 +20,17 @@ from ..processing.profiles import ProfileRegistry
 
 DEFAULT_THROTTLE_SEC = 0.0
 
+BATCH_ITEM_CHARS = 500
+BATCH_CONTRACT = """
+
+# Batch mode
+
+You will receive several items, each under a "### Item <index>" heading. Score every
+item independently under the policy above. This replaces the single-object contract:
+return valid JSON only, with exactly one entry per item:
+{"results": [{"index": <item index>, "score": <number from 0 to 10>, "reason": "<concise explanation>", "summary": "<one-sentence summary>", "tags": ["<tag>"]}]}"""
+
+
 class ContentAnalyzer:
     """Analyzes content items using AI to determine importance."""
 
@@ -59,6 +70,10 @@ class ContentAnalyzer:
         concurrency = self._get_concurrency()
         semaphore = asyncio.Semaphore(concurrency)
 
+        batch_size = getattr(getattr(self.client, "config", None), "analysis_batch_size", 1)
+        if batch_size > 1:
+            return await self._analyze_grouped(items, batch_size, semaphore)
+
         async def _process(item: ContentItem, index: int, progress_task) -> ContentItem:
             async with semaphore:
                 try:
@@ -91,6 +106,74 @@ class ContentAnalyzer:
             analyzed_items = await asyncio.gather(*coros)
 
         return analyzed_items
+
+    async def _analyze_grouped(
+        self, items: List[ContentItem], batch_size: int, semaphore: asyncio.Semaphore
+    ) -> List[ContentItem]:
+        """Score several same-profile items per AI call to cut call count.
+
+        Items the batch response omits or gets wrong fall back to the
+        single-item path, so a bad batch degrades cost, not coverage.
+        """
+        groups: dict[str, List[ContentItem]] = {}
+        for item in items:
+            profile = await self.classifier.resolve(item)
+            groups.setdefault(profile.id, []).append(item)
+
+        async def _score(profile_id: str, chunk: List[ContentItem]) -> None:
+            profile = self.profiles.get(profile_id)
+            async with semaphore:
+                try:
+                    response = await self.client.complete(
+                        system=analysis_system_prompt(profile) + BATCH_CONTRACT,
+                        user="\n\n".join(
+                            self._batch_entry(i, item) for i, item in enumerate(chunk)
+                        ),
+                    )
+                    parsed = self._parse_json_response(response) or {}
+                except Exception as e:
+                    logger.warning("Batch analysis failed for %s: %s", profile_id, e)
+                    parsed = {}
+                scored = set()
+                for row in parsed.get("results") or []:
+                    try:
+                        item = chunk[int(row.pop("index"))]
+                        result = ContentAnalysis.model_validate(row)
+                    except (KeyError, IndexError, TypeError, ValueError):
+                        continue
+                    if result.score is not None and item.processing:
+                        item.processing.analysis = result
+                        scored.add(item.id)
+                for item in chunk:
+                    if item.id in scored:
+                        continue
+                    try:
+                        await self._analyze_item(item)
+                    except Exception as e:
+                        logger.error("Error analyzing item %s: %s", item.id, e)
+                        if item.processing:
+                            item.processing.analysis = ContentAnalysis(
+                                score=None, reason="Analysis failed", summary=item.title
+                            )
+
+        await asyncio.gather(*(
+            _score(profile_id, group[start:start + batch_size])
+            for profile_id, group in groups.items()
+            for start in range(0, len(group), batch_size)
+        ))
+        return items
+
+    @staticmethod
+    def _batch_entry(index: int, item: ContentItem) -> str:
+        meta = item.metadata
+        engagement = ", ".join(
+            f"{key}: {meta[key]}" for key in ("score", "upvotes", "descendants") if meta.get(key)
+        )
+        content = select_content(split_content(item.content).main, BATCH_ITEM_CHARS, "prefix")
+        return (
+            f"### Item {index}\nTitle: {item.title}\nSource: {item.source_type.value}\n"
+            f"URL: {item.url}\nEngagement: {engagement or 'n/a'}\nContent: {content}"
+        )
 
     @retry(
         stop=stop_after_attempt(3),

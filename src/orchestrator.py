@@ -1,6 +1,8 @@
 """Main orchestrator coordinating the entire workflow."""
 
 import asyncio
+import itertools
+import json
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -25,6 +27,7 @@ from .scrapers.twitter import TwitterScraper
 from .scrapers.twitter_playwright import TwitterPlaywrightScraper
 from .scrapers.openbb import OpenBBScraper
 from .scrapers.ossinsight import OSSInsightScraper
+from .scrapers.hf_papers import HFPapersScraper
 from .scrapers.gdelt import GDELTScraper
 from .scrapers.google_news import GoogleNewsScraper
 from .ai.client import create_ai_client
@@ -280,6 +283,8 @@ class HorizonOrchestrator:
                 f"{self.icons['ai']} Analyzed {len(analyzed_items)} items with AI\n"
             )
 
+            self._save_scores(analyzed_items)
+
             # 5. Filter, deduplicate, and balance the digest
             filtering_result = await self.select_digest_items(
                 analyzed_items,
@@ -495,6 +500,12 @@ class HorizonOrchestrator:
             if self.config.sources.google_news and self.config.sources.google_news.enabled:
                 gn_scraper = GoogleNewsScraper(self.config.sources.google_news, client)
                 tasks.append(self._fetch_with_progress("Google News", gn_scraper, since))
+
+            # Hugging Face Daily Papers
+            hf_cfg = getattr(self.config.sources, "hf_papers", None)
+            if hf_cfg and hf_cfg.enabled:
+                hf_scraper = HFPapersScraper(hf_cfg, client)
+                tasks.append(self._fetch_with_progress("HF Papers", hf_scraper, since))
 
             # Fetch all concurrently
             outcomes = await asyncio.gather(*tasks)
@@ -1059,6 +1070,29 @@ class HorizonOrchestrator:
         self.console.print("")
         return result
 
+    def _save_scores(self, items: List[ContentItem]) -> None:
+        """Write every item's score to data/scores/<date>.json for threshold tuning."""
+        data_dir = getattr(self.storage, "data_dir", None)
+        if data_dir is None:
+            return
+        rows = [
+            {
+                "score": item.processing.analysis.score,
+                "profile": item.processing.classification.profile,
+                "category": item.metadata.get("category"),
+                "title": item.title,
+                "url": str(item.url),
+                "reason": item.processing.analysis.reason,
+            }
+            for item in items
+            if item.processing and item.processing.analysis
+        ]
+        rows.sort(key=lambda row: row["score"] if row["score"] is not None else -1, reverse=True)
+        scores_dir = data_dir / "scores"
+        scores_dir.mkdir(parents=True, exist_ok=True)
+        path = scores_dir / f"{datetime.now(timezone.utc):%Y-%m-%d}.json"
+        path.write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
+
     async def analyze_items(self, items: List[ContentItem]) -> List[ContentItem]:
         """Analyze content items with AI.
 
@@ -1068,6 +1102,22 @@ class HorizonOrchestrator:
         Returns:
             List[ContentItem]: Analyzed items
         """
+        max_items = self.config.ai.analysis_max_items
+        if max_items and len(items) > max_items:
+            # Take the newest items round-robin across categories so one busy
+            # category cannot fill the whole budget.
+            buckets: Dict[Optional[str], List[ContentItem]] = {}
+            for item in sorted(items, key=lambda i: i.published_at, reverse=True):
+                buckets.setdefault(item.metadata.get("category"), []).append(item)
+            picked = [
+                item
+                for row in itertools.zip_longest(*buckets.values())
+                for item in row
+                if item is not None
+            ][:max_items]
+            self.console.print(f"   Capped analysis to {len(picked)}/{len(items)} items")
+            items = picked
+
         self.console.print(f"{self.icons['ai']} Analyzing content with AI...")
 
         ai_client = create_ai_client(self.config.ai)

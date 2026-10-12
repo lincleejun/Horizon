@@ -559,6 +559,10 @@ def _create_single_client(config: AIConfig) -> AIClient:
         AIProvider.OLLAMA,
     }:
         return OpenAIClient(config)
+    elif config.provider == AIProvider.CLAUDE_CLI:
+        from .claude_cli import ClaudeCLIClient
+
+        return ClaudeCLIClient(config)
     else:
         raise ValueError(f"Unsupported AI provider: {config.provider}")
 
